@@ -1,0 +1,69 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    background-color: #f8f9fa;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main.container {
+    flex: 1 0 auto;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.table th {
+    font-weight: 600;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+@media (max-width: 767.98px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .card-body {
+        padding: 1.25rem !important;
+    }
+
+    h2, h3 {
+        font-size: 1.5rem;
+    }
+
+    .d-flex.gap-2 > .btn, 
+    .d-flex.justify-content-end > .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

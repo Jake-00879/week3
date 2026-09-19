@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 관리 서비스 - 상품 수정</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="my.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">📦 Product Manager</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html">상품 목록</a>
+                <a class="nav-link" href="add.html">상품 등록</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white py-3">
+                        <h3 class="fw-bold mb-0">상품 정보 수정</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="editForm" onsubmit="return validateAndEdit(event)">
+                            <div class="mb-3">
+                                <label for="pname" class="form-label fw-bold">품명 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="pname" value="무선 게이밍 마우스">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category" class="form-label fw-bold">품목 <span class="text-danger">*</span></label>
+                                <select class="form-select" id="category">
+                                    <option value="전자기기" selected>전자기기</option>
+                                    <option value="의류">의류</option>
+                                    <option value="식품">식품</option>
+                                    <option value="잡화">잡화</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="price" class="form-label fw-bold">가격(원) <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="price" value="89000">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="stock" class="form-label fw-bold">재고 수량 <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="stock" value="15">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="buyDate" class="form-label fw-bold">구매/입고일자 <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="buyDate" value="2026-02-15">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold">담당자 이메일 <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" value="manager@company.com">
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2 mt-4">
+                                <a href="view.html" class="btn btn-secondary px-4">취소</a>
+                                <button type="submit" class="btn btn-warning px-4">수정 완료</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer bg-light text-center py-3 border-top mt-auto">
+        <div class="container text-muted small">&copy; 2026 Product Management Service.</div>
+    </footer>
+
+    <script>
+        function validateAndEdit(event) {
+            event.preventDefault();
+
+            const pname = document.getElementById('pname').value.trim();
+            const price = document.getElementById('price').value;
+            const stock = document.getElementById('stock').value;
+            const email = document.getElementById('email').value.trim();
+
+            if (pname.length < 2) {
+                alert("품명은 최소 2자 이상 입력해야 합니다.");
+                return false;
+            }
+            if (!price || Number(price) < 100) {
+                alert("가격은 100원 이상이어야 합니다.");
+                return false;
+            }
+            if (!stock || Number(stock) < 1) {
+                alert("재고 수량은 1개 이상이어야 합니다.");
+                return false;
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("올바른 이메일 형식이 아닙니다.");
+                return false;
+            }
+
+            if (confirm("게시물을 수정할까요?")) {
+                alert("수정이 완료되었습니다.");
+                window.location.href = "view.html";
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
